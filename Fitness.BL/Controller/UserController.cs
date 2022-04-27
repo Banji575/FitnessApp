@@ -5,32 +5,40 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fitness.BL.Controller
 {
-    internal class UserController
+    public class UserController
     {
         public User User { get; }
 
-        public UserController(User user)
+        public UserController()
         {
-            User = user ?? throw new ArgumentNullException("User can not be null", nameof(user));
+            var formatter = new BinaryFormatter();
+            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
+            {
+               if( formatter.Deserialize(fs) is User user)
+                {
+                    User = user;
+                }
+               //TODO: что делать если пользоватьелья не прочитали?
+            }
+        }
+
+        public UserController(string userName, string genderName,DateTime birthDay, double weight, double height)
+        {
+            //TODO: Проверка
+            var gender = new Gender(genderName);
+            User = new User(userName, gender, birthDay, weight, height);
         }
 
         public void Save()
         {
             var formatter = new BinaryFormatter();
 
-            using (var fs = new FileStream("user.dat", FileMode.OpenOrCreate))
+            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, User);
             }
         }
 
-        public User Load()
-        {
-            var formatter = new BinaryFormatter();
-            using(var fs = new FileStream("user.dat", FileMode.OpenOrCreate))
-            {
-                return formatter.Deserialize(fs) as User;    
-            }
-        }
+       
     }
 }

@@ -23,22 +23,22 @@ namespace Fitness.BL.Model
             {
                 throw new ArgumentNullException("User name can not be empty or null", nameof(name));
             }
-            if(Gender == null)
+            if(gender == null)
             {
                 throw new ArgumentNullException("Gender can not be null", nameof(gender));
             }
 
-            if (BirthDate < DateTime.Parse("01.01.1900") || birthDate >= DateTime.Now)
+            if (birthDate < DateTime.Parse("01.01.1900") || birthDate >= DateTime.Now)
             {
                 throw new ArgumentException("Impossible date of birth", nameof(birthDate));
             }
 
-            if(Weight <= 0)
+            if(weight <= 0)
             {
                 throw new ArgumentException("Weight can not be zero", nameof(weight));
             }
 
-            if(Height <= 0)
+            if(height <= 0)
             {
                 throw new ArgumentException("Height can not be less of equal zero", nameof(height));
             }
