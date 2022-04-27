@@ -15,6 +15,8 @@ namespace Fitness.BL.Model
         public double Weight { get; set; }
 
         public double Height { get; set; }
+
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
         #endregion
         public User(string name, Gender gender, DateTime birthDate, double weight, double height)
         {
@@ -52,9 +54,18 @@ namespace Fitness.BL.Model
 
         }
 
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("User name can not be empty or null");
+            }
+
+            Name = name;
+        }
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
     }
 }
