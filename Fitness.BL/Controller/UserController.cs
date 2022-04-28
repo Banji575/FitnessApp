@@ -12,6 +12,8 @@ namespace Fitness.BL.Controller
       //  public User User { get; }
       public List<User> Users { get; }
         public User CurrentUser { get; }
+
+        public bool IsNewUser { get; } = false;
         public UserController(string userName)
         {
             if (string.IsNullOrWhiteSpace(userName))
@@ -26,6 +28,7 @@ namespace Fitness.BL.Controller
             {
                 CurrentUser = new User(userName);
                 Users.Add(CurrentUser);
+                IsNewUser = true;
                 Save();
             }
 /*
@@ -49,6 +52,14 @@ namespace Fitness.BL.Controller
             }
         }
 
+        public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
+        {
+            CurrentUser.Gender = new Gender(genderName);
+            CurrentUser.BirthDate = birthDate;
+            CurrentUser.Weight = weight;
+            CurrentUser.Height = height;
+            Save();
+        }
         public void Save()
         {
             var formatter = new BinaryFormatter();

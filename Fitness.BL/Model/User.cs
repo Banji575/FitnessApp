@@ -8,9 +8,9 @@ namespace Fitness.BL.Model
         #region Props
         public string Name { get; }
 
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
 
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }
 
         public double Weight { get; set; }
 
