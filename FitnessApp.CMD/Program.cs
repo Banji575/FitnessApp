@@ -67,7 +67,7 @@ namespace FitnessApp.CMD
                 }
                 else
                 {
-                    Console.WriteLine($"Не верный формат {name}");
+                    Console.WriteLine($"Не верный формат {name}а");
                 }
 
             }
