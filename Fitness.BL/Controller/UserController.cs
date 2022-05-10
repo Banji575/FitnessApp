@@ -1,4 +1,5 @@
-﻿using Fitness.BL.Model;
+﻿using CodeBlogFitness.BL.Controller;
+using Fitness.BL.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,8 +10,9 @@ namespace Fitness.BL.Controller
 {
     public class UserController : ControllerBase
     {
-      //  public User User { get; }
-      public List<User> Users { get; }
+        private const string USERS_FILE_NAME = "users.dat";
+        //  public User User { get; }
+        public List<User> Users { get; }
         public User CurrentUser { get; }
 
         public bool IsNewUser { get; } = false;
@@ -38,7 +40,7 @@ namespace Fitness.BL.Controller
 
         private List<User> GetUsersData()
         {
-          return  Load<List<User>>("users.dat") ?? new List<User>();
+          return  Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
         }
 
         public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
@@ -51,7 +53,7 @@ namespace Fitness.BL.Controller
         }
         public void Save()
         {
-            Save("users.dat", Users);
+            Save(USERS_FILE_NAME, Users);
         }
 
        

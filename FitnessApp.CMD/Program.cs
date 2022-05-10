@@ -16,7 +16,7 @@ namespace FitnessApp.CMD
             Console.WriteLine("Введите имя пользоватьеля");
             var name = Console.ReadLine();
             var userController = new UserController(name);
-
+            var eatingController = new EatingController(userController.CurrentUser);
             if (userController.IsNewUser)
             {
                 Console.WriteLine("Введите пол: ");
@@ -31,9 +31,39 @@ namespace FitnessApp.CMD
             }
 
             Console.WriteLine(userController.CurrentUser);
+
+            Console.WriteLine("Что вы хотите сделать");
+            Console.WriteLine("E - ввести прием пищи");
+            var key = Console.ReadKey();
+            if(key.Key == ConsoleKey.E)
+            {
+              var foods = EnterEating();
+                eatingController.Add(foods.Food, foods.Weight);
+
+                foreach(var item in eatingController.Eating.Foods)
+                {
+                    Console.WriteLine($"\t{item.Key}- {item.Value}");
+                }
+            }
             Console.ReadLine();
 
             //  userController.Save();
+        }
+         
+        private static (Food Food, double Weight) EnterEating()
+        {
+            Console.WriteLine("Введите имя продукта: ");
+            var food = Console.ReadLine();
+
+            var calories = ParseDouble("Калорийность");
+            var proteins = ParseDouble("Белки");
+            var fats = ParseDouble("Жиры");
+            var carbohydrates = ParseDouble("Углеводы");
+
+            Console.WriteLine("Введите вес порции: ");
+            var weight = ParseDouble("вес порции");
+            var product = new Food(food, calories, proteins, fats, carbohydrates);
+            return (Food:product,Weight: weight);
         }
 
         private static DateTime ParseDataTime()
@@ -67,7 +97,7 @@ namespace FitnessApp.CMD
                 }
                 else
                 {
-                    Console.WriteLine($"Не верный формат {name}а");
+                    Console.WriteLine($"Не верный формат поля {name}а");
                 }
 
             }
