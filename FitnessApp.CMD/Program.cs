@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace FitnessApp.CMD
 {
@@ -12,8 +13,10 @@ namespace FitnessApp.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение FitnessApp");
-            Console.WriteLine("Введите имя пользоватьеля");
+            var culture = CultureInfo.CreateSpecificCulture()
+
+            Console.WriteLine(Langues.Messages.Hello);
+            Console.WriteLine(Langues.Messages.EnterName);
             var name = Console.ReadLine();
             var userController = new UserController(name);
             var eatingController = new EatingController(userController.CurrentUser);
