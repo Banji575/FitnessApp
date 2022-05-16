@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Resources;
 
 namespace FitnessApp.CMD
 {
@@ -13,10 +14,15 @@ namespace FitnessApp.CMD
     {
         static void Main(string[] args)
         {
-            var culture = CultureInfo.CreateSpecificCulture()
 
-            Console.WriteLine(Langues.Messages.Hello);
-            Console.WriteLine(Langues.Messages.EnterName);
+            // var culture = CultureInfo.CreateSpecificCulture("en-us");
+            var culture = CultureInfo.CurrentCulture;
+            Console.WriteLine(culture);
+            var resourceManager = new ResourceManager("FitnessApp.CMD.Langues.Messages", typeof(Program).Assembly);
+
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+            Console.WriteLine(resourceManager.GetString("EnterName", culture));
+
             var name = Console.ReadLine();
             var userController = new UserController(name);
             var eatingController = new EatingController(userController.CurrentUser);

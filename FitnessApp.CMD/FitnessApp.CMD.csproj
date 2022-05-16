@@ -46,8 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Langues\Messages.en_us.Designer.cs">
-      <DependentUpon>Messages.en_us.resx</DependentUpon>
+    <Compile Include="Langues\Messages.ru-Ru1.Designer.cs">
+      <DependentUpon>Messages.ru-Ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Langues\Messages.en-us.Designer.cs">
+      <DependentUpon>Messages.en-us.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -70,9 +75,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Langues\Messages.en_us.resx">
+    <EmbeddedResource Include="Langues\Messages.ru-Ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.en_us.Designer.cs</LastGenOutput>
+      <LastGenOutput>Messages.ru-Ru1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Langues\Messages.en-us.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Langues\Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
