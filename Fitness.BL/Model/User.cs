@@ -6,6 +6,8 @@ namespace Fitness.BL.Model
     public class User
     {
         #region Props
+
+        public int Id { get; set; }
         public string Name { get; }
 
         public Gender Gender { get; set; }
